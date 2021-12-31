@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNav.menu.getItem(0).isCheckable = true
-        setFragment(MapFragment())
+        setFragment(CitiesFragment())
 
         bottomNav.setOnItemSelectedListener {menu ->
             when(menu.itemId){
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment(fragment : Fragment){
         val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.replace(R.id.fragment,fragment)
+        fragmentManager.replace(R.id.container,fragment)
         fragmentManager.commit()
     }
 

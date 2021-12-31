@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="vm"
+            type="com.tarasovms.weather.presentation.cities_fragment.CitiesViewModel" />
+    </data>
+
+<LinearLayout
+    android:id="@+id/cities_fragment"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Samara"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moscow"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:id="@+id/edText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@={vm.name}"
+        android:background="@color/purple_200"
+        android:textSize="30sp"
+        android:hint="Введите название годора "
+        />
+
+
+    <TextView
+        android:id="@+id/textViewCityHttp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="#8495EF"
+        android:textSize="25sp"
+        android:hint="Город полученный благодаря Retrofit"
+
+        />
+
+    <TextView
+        android:id="@+id/textViewtemperatyre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="temperature"
+        android:layout_margin="15dp"
+        android:background="#857E46"
+        />
+
+
+</LinearLayout>
+</layout>
