@@ -6,14 +6,34 @@ import retrofit2.http.*
 interface WeatherApi {
 
     companion object{
-         const val Key_API = "0cdb741ec14042a141b70eafae8f5777"
+         const val Key_API = "9bc26e2bc40cc50f6243dec639d76e70"
     }
 
-    @GET("/data/2.5/weather?q=Samara&appid=${Key_API}")
-    fun getWeatherList(): Single<List<WeatherResponse>>
+    /* Запрос погоды для списка городов в радиусе */
+    @GET("/data/2.5/find?cnt=21&appid=${Key_API}&units=metric&lang=ru")
+    fun getWeatherList(@Query("lat") lat: Double,
+                       @Query("lon") long: Double): Single<WeatherMassiveCity>
 
-    @GET("/data/2.5/weather?")
+    /* Запрос погоды для одного города */
+    @GET("/data/2.5/weather?&appid=${Key_API}")
     fun getWeatherCity(@Query(value = "q", encoded = true) city: String?,
-                       @Query("appid") key_API: String ): Single<WeatherResponse>
-
+                       @Query("lang") lang: String,
+                       @Query("units") units: String ): Single<WeatherResponse>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

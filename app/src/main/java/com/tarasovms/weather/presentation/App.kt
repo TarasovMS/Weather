@@ -36,24 +36,5 @@ class App: Application() {
             .build()
 
         weatherApi = retrofit.create(WeatherApi::class.java)
-//        weatherApi.getWeatherList()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                {
-//                    it.map {
-//                        Log.d("OkHttp", it.cityName)
-//                    }
-//                },
-//                {
-//                    //onError
-//                    Log.d("OkHttp", "ERROR")
-//                }
-//            )
-
-
-
-
-
     }
 }

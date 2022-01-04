@@ -4,52 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.gms.maps.model.LatLng
+import com.tarasovms.weather.data.remote.Default
+import com.tarasovms.weather.data.remote.WeatherResponse
 import com.tarasovms.weather.databinding.ListCitiesFragmentBinding
 import com.tarasovms.weather.presentation.App
-import kotlin.random.Random
+import com.tarasovms.weather.presentation.CommonViewModel
 
 class CitiesFragment: Fragment() {
 
-    lateinit var vm: CitiesViewModel
-    lateinit var ui: ListCitiesFragmentBinding
+    private lateinit var vm: CommonViewModel
+    private lateinit var ui: ListCitiesFragmentBinding
+    private lateinit var cityAdapter: CityAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
+        val defaultCity = LatLng(Default.defaultCity.latitude, Default.defaultCity.longitude)
         val app = (context?.applicationContext as App)
-        vm = CitiesViewModel(app)
-        vm.fetchWeatherCity((activity?.application as App).weatherApi)
 
-        val cities = listOf("Samara","Moscow","Kirov", "Volgograd", "New York", "Kiev", "Omsk", "Balakovo", "Vienna")
-
+        cityAdapter = CityAdapter(listOf(), object: OnCityClickListener{
+            override fun clickedCityItem(weatherResponse: WeatherResponse) {
+                Toast.makeText(context,"Нажат ${weatherResponse.cityName}", Toast.LENGTH_LONG).show()
+            }
+        })
         ui = ListCitiesFragmentBinding.inflate(layoutInflater)
-        ui.button1.setOnClickListener{
-            vm.name.value = cities.random()
-            ui.edText.setText(vm.name.value)
+        ui.recyclerViewCity.adapter = cityAdapter
 
-        }
-        ui.button2.setOnClickListener {
-            vm.name.value= cities.random()
-            ui.edText.setText(vm.name.value)
-        }
+        vm = CommonViewModel(app)
+        if (vm.cityList.value != null) cityAdapter.updateItems(vm.cityList.value!!)
+        else vm.getCityWeather(defaultCity)
 
-        vm.name.observe(requireActivity(), {
-            vm.fetchWeatherCity((activity?.application as App).weatherApi)
-        })
-
-
-        vm.nameCity.observe(requireActivity(),{
-            ui.textViewCityHttp.text = it
-        })
-
-        vm.tempory.observe(requireActivity(),{
-            ui.textViewtemperatyre.text = it.toString()
+        vm.cityList.observe(viewLifecycleOwner, {
+            cityAdapter.updateItems(it)
         })
 
         return ui.root
     }
-
-
 }
