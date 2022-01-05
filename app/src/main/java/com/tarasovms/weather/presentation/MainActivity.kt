@@ -15,7 +15,7 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNav.menu.getItem(0).isCheckable = true
-        setFragment(CitiesFragment())
+        setFragment(MapFragment())
 
         bottomNav.setOnItemSelectedListener {menu ->
             when(menu.itemId){

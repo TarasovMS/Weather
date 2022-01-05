@@ -1,23 +1,27 @@
 package com.tarasovms.weather.presentation
 
 import android.app.Application
-import android.util.Log
 import com.tarasovms.weather.data.remote.WeatherApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.tarasovms.weather.di.AppComponent
+import com.tarasovms.weather.di.DaggerAppComponent
+import com.tarasovms.weather.di.module.ApplicationModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class App: Application() {
+class App @Inject constructor(): Application() {
 
     lateinit var weatherApi: WeatherApi
+    lateinit var appComponent: AppComponent
+
 
     override fun onCreate() {
         super.onCreate()
         configureRetrofit()
+        initDagger()
     }
 
     private fun configureRetrofit(){
@@ -36,5 +40,11 @@ class App: Application() {
             .build()
 
         weatherApi = retrofit.create(WeatherApi::class.java)
+    }
+
+    private fun initDagger(){
+        appComponent = DaggerAppComponent.builder()
+            .applicationModule(ApplicationModule(this))
+            .build()
     }
 }

@@ -23,7 +23,7 @@ class CitiesFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         val defaultCity = LatLng(Default.defaultCity.latitude, Default.defaultCity.longitude)
-        val app = (context?.applicationContext as App)
+        val app = context?.applicationContext as App
 
         cityAdapter = CityAdapter(listOf(), object: OnCityClickListener{
             override fun clickedCityItem(weatherResponse: WeatherResponse) {
@@ -33,9 +33,13 @@ class CitiesFragment: Fragment() {
         ui = ListCitiesFragmentBinding.inflate(layoutInflater)
         ui.recyclerViewCity.adapter = cityAdapter
 
-        vm = CommonViewModel(app)
-        if (vm.cityList.value != null) cityAdapter.updateItems(vm.cityList.value!!)
-        else vm.getCityWeather(defaultCity)
+        vm = app.appComponent.getViewModel()
+
+//        if (vm.cityList.value != null)
+//            cityAdapter.updateItems(vm.cityList.value!!)
+//        else
+        if (vm.cityList.value == null)
+            vm.getCityWeather(defaultCity)
 
         vm.cityList.observe(viewLifecycleOwner, {
             cityAdapter.updateItems(it)
