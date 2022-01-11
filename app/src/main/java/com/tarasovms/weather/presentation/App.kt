@@ -18,7 +18,6 @@ class App @Inject constructor(): Application() {
     lateinit var weatherApi: WeatherApi
     lateinit var appComponent: AppComponent
 
-
     override fun onCreate() {
         super.onCreate()
         configureRetrofit()

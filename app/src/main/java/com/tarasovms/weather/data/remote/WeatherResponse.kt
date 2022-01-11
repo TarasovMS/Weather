@@ -52,5 +52,7 @@ data class WeatherResponse (
 
     @SerializedName("cod")
     @Expose
-    val cod: Int
-    )
+    val cod: Int,
+
+    var expandable: Boolean = false
+)

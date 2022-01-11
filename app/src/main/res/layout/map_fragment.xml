@@ -14,8 +14,7 @@
         map:uiZoomControls="true"
         map:uiRotateGestures="true"
         map:cameraTilt="30"
-
-
+        android:fontFamily="@font/lazurski_italic_cyrillic"
         />
 
 </LinearLayout>

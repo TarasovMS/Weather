@@ -11,15 +11,14 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class CommonViewModel @Inject constructor(application: App): AndroidViewModel(application) {
+open class CommonViewModel @Inject constructor(val application: App): AndroidViewModel(application) {
 
     private val compositeDisposable = CompositeDisposable()
-    var cityList = MutableLiveData<List<WeatherResponse>>()
     lateinit var remoteService: RemoteService
-    val app = application
+    open var cityList = MutableLiveData<List<WeatherResponse>>()
 
-    fun getCityWeather(latLng: LatLng){
-        remoteService = RemoteService(app.weatherApi)
+    open fun getCityWeather(latLng: LatLng){
+        remoteService = RemoteService(application.weatherApi)
         compositeDisposable.add( remoteService.getWeather(latLng)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

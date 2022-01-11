@@ -2,8 +2,10 @@
     <string name="app_name">Weather</string>
     <string name="map">Карта</string>
     <string name="cities">Список</string>
-    <string name="weather_in">Погода в </string>
+    <string name="weather_in">Погода сегодня в </string>
     <string name="for_today"> на сегодня</string>
+    <string name="degrees_сelsius"> ℃</string>
+
 
 
 </resources>

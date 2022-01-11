@@ -4,5 +4,5 @@ import com.tarasovms.weather.data.remote.WeatherResponse
 
 
 interface OnCityClickListener {
-    fun clickedCityItem(weatherResponse: WeatherResponse)
+    fun clickedCityItem(weatherResponse: WeatherResponse, position: Int)
 }

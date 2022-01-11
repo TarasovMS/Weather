@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item
         android:id="@+id/bottomNav_map"
         android:title="@string/map"
+        android:fontFamily="@font/lazurski_italic_cyrillic"
         />
     <item
         android:id="@+id/bottomNav_cities"

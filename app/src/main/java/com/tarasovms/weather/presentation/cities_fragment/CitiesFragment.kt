@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.model.LatLng
 import com.tarasovms.weather.data.remote.Default
@@ -26,20 +25,18 @@ class CitiesFragment: Fragment() {
         val app = context?.applicationContext as App
 
         cityAdapter = CityAdapter(listOf(), object: OnCityClickListener{
-            override fun clickedCityItem(weatherResponse: WeatherResponse) {
-                Toast.makeText(context,"Нажат ${weatherResponse.cityName}", Toast.LENGTH_LONG).show()
+            override fun clickedCityItem(weatherResponse: WeatherResponse, position: Int) {
+                weatherResponse.expandable = !weatherResponse.expandable
+                cityAdapter.updateItems(position)
             }
         })
         ui = ListCitiesFragmentBinding.inflate(layoutInflater)
         ui.recyclerViewCity.adapter = cityAdapter
 
-        vm = app.appComponent.getViewModel()
+        vm = app.appComponent.getMapViewModel()
 
-//        if (vm.cityList.value != null)
-//            cityAdapter.updateItems(vm.cityList.value!!)
-//        else
-        if (vm.cityList.value == null)
-            vm.getCityWeather(defaultCity)
+        if (vm.cityList.value == null) vm.getCityWeather(defaultCity)
+        else cityAdapter.updateItems(vm.cityList.value!!)
 
         vm.cityList.observe(viewLifecycleOwner, {
             cityAdapter.updateItems(it)

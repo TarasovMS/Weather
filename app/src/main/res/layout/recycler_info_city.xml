@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    >
+    android:background="#EFEDED">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,46 +13,109 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/TView_recycler_id"
-            android:layout_width="0dp"
+            android:id="@+id/tv_recycler_name_city"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Name"
+            android:textSize="20sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_recycler_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:gravity="center_vertical"
             android:lines="1"
             android:hint="1"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/TView_recycler_name_city"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:layout_marginStart="10dp"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Name"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/TView_recycler_temperature_city"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:layout_marginStart="10dp"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="temp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 
-    <Space
+    <LinearLayout
+        android:id="@+id/ll_recyclerView_weather"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingStart="30dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Погода на сегодня:"
+            android:textSize="16sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_recycler_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Температура"
+            android:textSize="16sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_recycler_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Влажность"
+            android:textSize="16sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_recycler_wind_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Скорость ветра"
+            android:textSize="16sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_recycler_weather_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Погодные условия"
+            android:textSize="16sp"
+            android:fontFamily="@font/lazurski_italic_cyrillic"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
         />
 
 </LinearLayout>
