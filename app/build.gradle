@@ -70,4 +70,7 @@ dependencies {
     /*Dagger*/
     implementation 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'
+
+    /* Navigation Architecture Component */
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
 }
